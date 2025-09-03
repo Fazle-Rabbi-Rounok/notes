@@ -11,18 +11,17 @@
     <div class="folder">
       <h2>📂 3101</h2>
       <ul id="file-list-3101">
-        <li><a href="31/3101/2.jpeg" class="download" download>2.jpeg</a></li>
         <li>
-          <a href="31/3101/book.pdf" class="download" download>book.pdf</a>
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/book.pdf"
+            download
+            >book.pdf</a
+          >
         </li>
         <li>
-          <a href="31/3101/chap1.docx" class="download" download>chap1.docx</a>
-        </li>
-        <li>
-          <a href="31/3101/stuffs.txt" class="download" download>stuffs.txt</a>
-        </li>
-        <li>
-          <a href="31/3101/first_episode.mkv" class="download" download
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/first_episode.mkv"
+            download
             >first_episode.mkv</a
           >
         </li>
@@ -33,20 +32,28 @@
     </div>
 
     <script>
+      function downloadFilesSequentially(links, index = 0) {
+        if (index >= links.length) return;
+
+        const link = links[index];
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.download = link.getAttribute("download") || "";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Wait 1 second before starting the next download
+        setTimeout(() => downloadFilesSequentially(links, index + 1), 1000);
+      }
+
       const buttons = document.querySelectorAll(".download-all");
 
       buttons.forEach((button) => {
         button.addEventListener("click", () => {
           const listId = button.getAttribute("data-list");
           const links = document.querySelectorAll(`#${listId} a`);
-          links.forEach((link) => {
-            const a = document.createElement("a");
-            a.href = link.href;
-            a.download = link.download;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          });
+          downloadFilesSequentially(links);
         });
       });
     </script>
