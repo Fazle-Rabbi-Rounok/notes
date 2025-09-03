@@ -1,61 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>📚 E-Library</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>📚 My E-Library</h1>
-    <div class="folder">
-      <h2>📂 3101</h2>
-      <ul id="file-list-3101">
-        <li>
-          <a
-            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/book.pdf"
-            download
-            >book.pdf</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/first_episode.mkv"
-            download
-            >first_episode.mkv</a
-          >
-        </li>
-      </ul>
-      <button class="download-all" data-list="file-list-3101">
-        Download All Files
-      </button>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Department Library</h1>
+    </header>
 
-    <script>
-      function downloadFilesSequentially(links, index = 0) {
-        if (index >= links.length) return;
-
-        const link = links[index];
-        const a = document.createElement("a");
-        a.href = link.href;
-        a.download = link.getAttribute("download") || "";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        // Wait 1 second before starting the next download
-        setTimeout(() => downloadFilesSequentially(links, index + 1), 1000);
-      }
-
-      const buttons = document.querySelectorAll(".download-all");
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const listId = button.getAttribute("data-list");
-          const links = document.querySelectorAll(`#${listId} a`);
-          downloadFilesSequentially(links);
-        });
-      });
-    </script>
-  </body>
+    <main>
+        <ul class="folders">
+            <li><a href="1-1.html">1st Year - 1st Semester</a></li>
+            <li><a href="1-2.html">1st Year - 2nd Semester</a></li>
+            <li><a href="2-1.html">2nd Year - 1st Semester</a></li>
+            <li><a href="2-2.html">2nd Year - 2nd Semester</a></li>
+            <li><a href="3-1.html">3rd Year - 1st Semester</a></li>
+            <li><a href="3-2.html">3rd Year - 2nd Semester</a></li>
+            <li><a href="4-1.html">4th Year - 1st Semester</a></li>
+            <li><a href="4-2.html">4th Year - 2nd Semester</a></li>
+        </ul>
+    </main>
+</body>
 </html>

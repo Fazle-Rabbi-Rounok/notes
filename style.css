@@ -1,52 +1,103 @@
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  background: #f8f9fa;
-  color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f6fa;
+    color: #333;
 }
 
-h1, h2 {
-  color: #2c3e50;
+header {
+    background: #4b6cb7;  /* Gradient header */
+    background: linear-gradient(135deg, #4b6cb7, #182848);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.folder {
-  margin-bottom: 20px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+header h1 {
+    margin: 0;
+    font-size: 2rem;
 }
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
+header a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #fff;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    transition: 0.2s;
 }
 
-li {
-  margin: 5px 0;
+header a:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
+/* Main Container */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1.5rem;
 }
 
-a:hover {
-  text-decoration: underline;
+/* Folder/Card Styles */
+ul.folders, ul.files {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.download {
-  margin-left: 10px;
-  padding: 3px 8px;
-  background: #28a745;
-  color: white;
-  border-radius: 4px;
-  font-size: 0.9em;
-  text-decoration: none;
+ul.folders li, ul.files li {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1.2rem 2rem;
+    transition: 0.3s;
+    cursor: pointer;
+    min-width: 150px;
+    text-align: center;
 }
 
-.download:hover {
-  background: #218838;
+ul.folders li:hover, ul.files li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+/* Links inside cards */
+ul.folders li a, ul.files li a {
+    text-decoration: none;
+    color: #182848;
+    font-weight: bold;
+    display: block;
+}
+
+/* File Icons */
+ul.files li a::before {
+    content: "📄 ";
+}
+
+/* Folder Icons */
+ul.folders li a::before {
+    content: "📁 ";
+}
+
+/* Responsive */
+@media(max-width: 600px){
+    ul.folders li, ul.files li {
+        min-width: 120px;
+        padding: 1rem;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
 }

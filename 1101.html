@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course 1101</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Course 1101</h1>
+      <a href="1-1.html">⬅ Back to Semester</a>
+    </header>
+
+    <main>
+      <ul class="files" id="file-list-1101">
+        <li>
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/stuffs.txt"
+            download
+            >stuffs.txt</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/book.pdf"
+            download
+            >book.pdf</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/first_episode.mkv"
+            download
+            >first_episode.mkv</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/Fazle-Rabbi-Rounok/notes/releases/download/v1.0.0/2.jpeg"
+            download
+            >pic.jpg</a
+          >
+        </li>
+      </ul>
+
+      <!-- Download All Button -->
+      <button class="download-all" data-list="file-list-1101">
+        Download All Files
+      </button>
+    </main>
+
+    <!-- Sequential download script -->
+    <script>
+      function downloadFilesSequentially(links, index = 0) {
+        if (index >= links.length) return;
+
+        const link = links[index];
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.download = link.getAttribute("download") || "";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Wait 1 second before starting the next download
+        setTimeout(() => downloadFilesSequentially(links, index + 1), 1000);
+      }
+
+      const buttons = document.querySelectorAll(".download-all");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const listId = button.getAttribute("data-list");
+          const links = document.querySelectorAll(`#${listId} a`);
+          downloadFilesSequentially(links);
+        });
+      });
+    </script>
+  </body>
+</html>
