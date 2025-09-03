@@ -9,29 +9,36 @@
 <body>
   <h1>📚 My E-Library</h1>
   <div class="folder">
-    <h2>📂 3101</h2>
-    <ul id="file-list">
-      <li><a href="31/3101/2.jpeg" class="download" download>2.jpeg</a></li>
-      <li><a href="31/3101/12_CoordinateSystem%20VVI.pdf" class="download" download>12_CoordinateSystem VVI.pdf</a></li>
-      <li><a href="31/3101/chap1.docx" class="download" download>chap1.docx</a></li>
-      <li><a href="31/3101/stuffs.txt" class="download" download>stuffs.txt</a></li>
-    </ul>
-    <button id="download-all">Download All Files</button>
-  </div>
+  <h2>📂 3101</h2>
+  <ul id="file-list-3101">
+    <li><a href="31/3101/2.jpeg" class="download" download>2.jpeg</a></li>
+    <li><a href="31/3101/12_CoordinateSystem%20VVI.pdf" class="download" download>12_CoordinateSystem VVI.pdf</a></li>
+    <li><a href="31/3101/chap1.docx" class="download" download>chap1.docx</a></li>
+    <li><a href="31/3101/stuffs.txt" class="download" download>stuffs.txt</a></li>
+    <li><a href="31/3101/K&P%20S01E01%20I%20Said%20Bitch%20(1080p%20x265%20Joy).mkv" class="download" download>K&P S01E01 I Said Bitch (1080p x265 Joy).mkv</a></li>
+  </ul>
+  <button class="download-all" data-list="file-list-3101">Download All Files</button>
+</div>
+
 
   <script>
-    const button = document.getElementById('download-all');
-    button.addEventListener('click', () => {
-      const links = document.querySelectorAll('#file-list a');
-      links.forEach(link => {
-        const a = document.createElement('a');
-        a.href = link.href;
-        a.download = link.download;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      });
+    const buttons = document.querySelectorAll('.download-all');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const listId = button.getAttribute('data-list');
+    const links = document.querySelectorAll(`#${listId} a`);
+    links.forEach(link => {
+      const a = document.createElement('a');
+      a.href = link.href;
+      a.download = link.download;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
+  });
+});
+
   </script>
 </body>
 </html>
